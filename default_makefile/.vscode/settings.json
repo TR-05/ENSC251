@@ -1,0 +1,12 @@
+{
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/Users/trevor/Desktop/projects/default_makefile/build/apps",
+            "binaryPath": "/Users/trevor/Desktop/projects/default_makefile/build/apps/program",
+            "binaryArgs": []
+        }
+    ],
+    "files.associations": {
+        "iosfwd": "cpp"
+    }
+}
