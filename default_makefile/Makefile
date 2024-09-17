@@ -14,8 +14,8 @@
 #
 
 CXX      := -c++
-CXXFLAGS := -pedantic-errors -Wall -Wextra -Werror
-LDFLAGS  := -L/usr/lib -lstdc++ -lm
+CXXFLAGS := -std=c++20 -pedantic-errors -Wall -Wextra -Werror
+LDFLAGS  := -L/usr/lib  -lm -lc++experimental -fexperimental-library
 BUILD    := ./build
 OBJ_DIR  := $(BUILD)/objects
 APP_DIR  := $(BUILD)/apps
