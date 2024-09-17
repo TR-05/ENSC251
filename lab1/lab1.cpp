@@ -1,10 +1,9 @@
 /**
  * @file lab1.cpp
  * @author Trevor Ruttan
- * @Date   9/17/2017
+ * @Date   9/17/2024
  * @version 1.0
  * @section DESCRIPTION
- *
  * This program reads a csv file containing student grades and calculates the average of the grades.
  */
 
@@ -13,7 +12,7 @@
 // following the Academic Honesty and Integrity related policies as
 // outlined in the syllabus.
 //
-// _____ Trevor Ruttan ____      _____9/17/2017______________
+// _____ Trevor Ruttan ____      _____9/17/2024______________
 //
 // ____ 301580889 ______
 
@@ -27,6 +26,7 @@
 
 #include <sstream>
 
+using namespace std;
 /*
  * SPECIFICATIONS
  * Read the grades.csv.
@@ -40,7 +40,7 @@
  * @brief Student struct holds all data for 1 student and methods to print the data
  */
 struct Student {
-  std::string name;
+  string name;
   int exam1;
   int exam2;
   int exam3;
@@ -51,11 +51,11 @@ struct Student {
    * @return void
    **/
   void printToTerminal() {
-    std::cout << std::left << std::setw(24) << name;
-    std::cout << std::setw(10) << exam1;
-    std::cout << std::setw(10) << exam2;
-    std::cout << std::setw(10) << exam3;
-    std::cout << std::setw(10) << std::fixed << std::setprecision(2) << average << std::endl;
+    cout << left << setw(24) << name;
+    cout << setw(10) << exam1;
+    cout << setw(10) << exam2;
+    cout << setw(10) << exam3;
+    cout << setw(10) << fixed << setprecision(2) << average << endl;
   }
 
   /**
@@ -63,45 +63,44 @@ struct Student {
    * @param file the file to write to
    * @return void
    **/
-  void printToFile(std::ofstream & file) {
-    file << std::left << std::setw(24) << name;
-    file << std::setw(10) << exam1;
-    file << std::setw(10) << exam2;
-    file << std::setw(10) << exam3;
-    file << std::setw(10) << std::fixed << std::setprecision(2) << average << std::endl;
+  void printToFile(ofstream & file) {
+    file << left << setw(24) << name;
+    file << setw(10) << exam1;
+    file << setw(10) << exam2;
+    file << setw(10) << exam3;
+    file << setw(10) << fixed << setprecision(2) << average << endl;
   }
 };
 
 // Vector to hold all students
-std::vector < Student > students;
+vector < Student > students;
 
 int main() {
   // Print the header
-  std::cout << std::left << std::setw(24) << "Name" << std::setw(10) << "Exam1" << std::setw(10) << "Exam2" << std::setw(10) << "Exam3" << std::setw(10) << "Avg" << std::endl;
-  std::cout << "-----------------------------------------------------------" << std::endl;
+  cout << left << setw(24) << "Name" << setw(10) << "Exam1" << setw(10) << "Exam2" << setw(10) << "Exam3" << setw(10) << "Avg" << endl;
+  cout << "-----------------------------------------------------------" << endl;
   // Open the file for reading
-  std::ifstream grades("grades.csv");
+  ifstream grades("grades.csv");
   // Read the first line and discard it
-  std::string line;
-  std::getline(grades, line);
+  string line;
+  getline(grades, line);
 
   // loop through the file and read the data into the students vector
-  while (std::getline(grades, line)) {
-    std::istringstream iss(line);
+  while (getline(grades, line)) {
+    istringstream iss(line);
     Student student;
-    std::string exam1, exam2, exam3;
-    std::string temp;
-    std::getline(iss, student.name, ',');
-    std::getline(iss, temp, ',');
-    student.name += " ";
-    student.name += temp;
-    std::getline(iss, exam1, ',');
-    std::getline(iss, exam2, ',');
-    std::getline(iss, exam3, ',');
-
-    student.exam1 = std::stoi(exam1);
-    student.exam2 = std::stoi(exam2);
-    student.exam3 = std::stoi(exam3);
+    string temp;
+    //use a temporary string to read the name data then concatenate the first and last name
+    getline(iss, student.name, ',');
+    getline(iss, temp, ',');
+    student.name += " " + temp;
+    //use a temporary string to read the exam data then convert it to int
+    getline(iss, temp, ',');
+    student.exam1 = stoi(temp);
+    getline(iss, temp, ',');
+    student.exam2 = stoi(temp);
+    getline(iss, temp, ',');
+    student.exam3 = stoi(temp);
 
     student.average = (student.exam1 + student.exam2 + student.exam3) / 3.0;
     students.push_back(student);
@@ -113,10 +112,10 @@ int main() {
   }
 
   // Create and open a new csv file to write the data to
-  std::ofstream averageGrades("averagegrades.csv");
+  ofstream averageGrades("averagegrades.csv");
   // Print the header to the file
-  averageGrades << std::left << std::setw(24) << "Name" << std::setw(10) << "Exam1" << std::setw(10) << "Exam2" << std::setw(10) << "Exam3" << std::setw(10) << "Avg" << std::endl;
-  averageGrades << "-----------------------------------------------------------" << std::endl;
+  averageGrades << left << setw(24) << "Name" << setw(10) << "Exam1" << setw(10) << "Exam2" << setw(10) << "Exam3" << setw(10) << "Avg" << endl;
+  averageGrades << "-----------------------------------------------------------" << endl;
   // Print the collected data to the file
   for (auto & student: students) {
     student.printToFile(averageGrades);
