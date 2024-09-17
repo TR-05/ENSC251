@@ -2,8 +2,6 @@ CXX      := g++
 CC       := gcc
 
 # compiler flags:
-#  -g    adds debugging information to the executable file
-#  -Wall turns on most, but not all, compiler warnings
 CXXFLAGS := -std=gnu++2b -pedantic-errors -Wall -Wextra -Werror
 
 # the build target executable:
