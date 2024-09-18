@@ -39,43 +39,7 @@ using namespace std;
 /**
  * @brief Student struct holds all data for 1 student and methods to print the data
  */
-struct Student;
-
-/**
- * @brief Opens the grades.csv file and reads the data into the students vector
- */
-void collectData();
-
-// Vector to hold all students
-vector < Student > students;
-
-int main() {
-	collectData();
-  // Print the header
-  cout << left << setw(24) << "Name" << setw(10) << "Exam1" << setw(10) << "Exam2" << setw(10) << "Exam3" << setw(10) << "Avg" << endl;
-  cout << "-----------------------------------------------------------" << endl;
-  // loop through the students vector and print all the collected data
-  for (auto & student: students) {
-    student.printToTerminal();
-  }
-
-  // Create and open a new csv file to write the data to
-  ofstream averageGrades("averagegrades.csv");
-  // Print the header to the file
-  averageGrades << left << setw(24) << "Name" << setw(10) << "Exam1" << setw(10) << "Exam2" << setw(10) << "Exam3" << setw(10) << "Avg" << endl;
-  averageGrades << "-----------------------------------------------------------" << endl;
-  // Print the collected data to the file
-  for (auto & student: students) {
-    student.printToFile(averageGrades);
-  }
-  averageGrades.close();
-
-  return 0;
-}
-
-
-struct Student
- {
+struct Student {
   string name;
   int exam1;
   int exam2;
@@ -108,12 +72,13 @@ struct Student
   }
 };
 
-
 /**
  * @brief Opens the grades.csv file and reads the data into the students vector
  */
-void collectData()
-{
+
+vector < Student > students;
+
+void collectData() {
   // Open the file for reading
   ifstream grades("grades.csv");
   // Read the header line and discard it
@@ -142,4 +107,29 @@ void collectData()
   }
   grades.close();
   // Print the collected data to the terminal
+}
+
+int main() {
+  // Vector to hold all students
+  collectData();
+  // Print the header
+  cout << left << setw(24) << "Name" << setw(10) << "Exam1" << setw(10) << "Exam2" << setw(10) << "Exam3" << setw(10) << "Avg" << endl;
+  cout << "-----------------------------------------------------------" << endl;
+  // loop through the students vector and print all the collected data
+  for (auto & student: students) {
+    student.printToTerminal();
+  }
+
+  // Create and open a new csv file to write the data to
+  ofstream averageGrades("averagegrades.csv");
+  // Print the header to the file
+  averageGrades << left << setw(24) << "Name" << setw(10) << "Exam1" << setw(10) << "Exam2" << setw(10) << "Exam3" << setw(10) << "Avg" << endl;
+  averageGrades << "-----------------------------------------------------------" << endl;
+  // Print the collected data to the file
+  for (auto & student: students) {
+    student.printToFile(averageGrades);
+  }
+  averageGrades.close();
+
+  return 0;
 }
