@@ -1,22 +1,25 @@
-CPPFLAGS := -std=gnu++2b -pedantic-errors -Wall -Wextra -Werror -stdlib=libc++
+CPPFLAGS := -std=gnu++20 -pedantic-errors -Wall -Wextra -Werror -stdlib=libc++
+
+TARGET = carTest
+
+# Find all .cpp files and corresponding .o files
+SRCS := $(wildcard *.cpp)
+
+OBJS := $(SRCS:.cpp=.o)
 
 # Build the executable
-carTest: lab2.o Car.o
-	g++ -o carTest lab2.o Car.o
+TARGET: $(OBJS)
+	g++ -o $(TARGET) $(OBJS)
 
-# Compile Car.o
-Car.o: Car.cpp
-	g++ -c $(CPPFLAGS) Car.cpp
-
-# Compile lab2.o
-lab2.o: lab2.cpp
-	g++ -c $(CPPFLAGS) lab2.cpp
+# Compile .o files from .cpp files
+%.o: %.cpp
+	g++ -c $(CPPFLAGS) $< -o $@
 
 # Clean up the directory
 clean:
-	rm -f lab2 *.o carTest
+	rm -f *.o TARGET
 
 run:
 	make clean
 	make
-	./carTest
+	./$(TARGET)
