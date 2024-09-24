@@ -1,10 +1,11 @@
+#set to c++ 20 and add error flags
 CPPFLAGS := -std=gnu++20 -pedantic-errors -Wall -Wextra -Werror -stdlib=libc++
 
+# Name the executable
 TARGET = carTest
 
 # Find all .cpp files and corresponding .o files
 SRCS := $(wildcard *.cpp)
-
 OBJS := $(SRCS:.cpp=.o)
 
 # Build the executable
@@ -17,8 +18,9 @@ TARGET: $(OBJS)
 
 # Clean up the directory
 clean:
-	rm -f *.o TARGET
+	rm -f *.o $(TARGET)
 
+# make and run the program in one command
 run:
 	make clean
 	make

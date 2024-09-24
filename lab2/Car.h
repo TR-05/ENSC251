@@ -1,7 +1,7 @@
 /**
  * @file Car.h
  * @author Trevor Ruttan
- * @Date 9/23/2024
+ * @Date 9/24/2024
  * @version 1.0
  * @section DESCRIPTION
  */
@@ -17,16 +17,47 @@
 #include <string>
 
 class Car {
-  public: Car(int yearModel, std::string make): yearModel(yearModel),
-  make(make),
-  speed(0) {};
+  public:
+    // Constructor taking in yearModel and make
+    Car(int yearModel, std::string make): m_yearModel(yearModel),
+  m_make(make),
+  m_speed(0) {};
+
   ~Car() {};
+
+  // Accessors
+
+  /*
+   * @brief Gets the speed of the car.
+   * @return int The current speed of the car.
+   */
   int getSpeed();
+
+  /*
+   * @brief Gets the year model of the car.
+   * @return int The year model of the car.
+   */
   int getYearModel();
+
+  /*
+   * @brief Gets the make of the car.
+   * @return std::string The make of the car.
+   */
   std::string getMake();
+
+  // Mutators
+
+  /*
+   * @brief Increases the speed of the car by 5 units.
+   */
   void accelerate();
+
+  /*
+   * @brief Decreases the speed of the car by 5 units
+   */
   void brake();
-  private: int yearModel;
-  std::string make;
-  int speed;
+
+  private: const int m_yearModel;
+  const std::string m_make;
+  int m_speed;
 };
