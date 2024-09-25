@@ -22,7 +22,7 @@
  * @return int The current speed of the car.
  */
 int Car::getSpeed() {
-  return m_speed;
+  return speed;
 }
 
 /*
@@ -30,7 +30,7 @@ int Car::getSpeed() {
  * @return int The year model of the car.
  */
 int Car::getYearModel() {
-  return m_yearModel;
+  return yearModel;
 }
 
 /*
@@ -38,19 +38,21 @@ int Car::getYearModel() {
  * @return std::string The make of the car.
  */
 std::string Car::getMake() {
-  return m_make;
+  return make;
 }
 
 /*
  * @brief Increases the speed of the car by 5 units.
+ * @return void
  */
 void Car::accelerate() {
-  m_speed += 5;
+  speed += 5;
 }
 
 /*
  * @brief Decreases the speed of the car by 5 units
+ * @return void
  */
 void Car::brake() {
-  m_speed -= 5;
+  speed -= 5;
 }

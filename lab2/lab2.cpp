@@ -26,10 +26,9 @@ int main() {
     oddysey.accelerate();
     std::cout << oddysey.getSpeed() << std::endl;
   }
+
   // Call brake 5 times and print the speed each time
-  for (int i {
-      0
-    }; i < 5; i++) {
+  for (int i {0}; i < 5; i++) {
     oddysey.brake();
     std::cout << oddysey.getSpeed() << std::endl;
   }

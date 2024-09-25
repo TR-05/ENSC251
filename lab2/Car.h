@@ -17,15 +17,18 @@
 #include <string>
 
 class Car {
+  private: const int yearModel;
+  const std::string make;
+  int speed;
+
   public:
     // Constructor taking in yearModel and make
-    Car(int yearModel, std::string make): m_yearModel(yearModel),
-  m_make(make),
-  m_speed(0) {};
+    Car(int yearModel, std::string make)
+    : yearModel(yearModel),
+    make(make),
+    speed(0) {};
 
   ~Car() {};
-
-  // Accessors
 
   /*
    * @brief Gets the speed of the car.
@@ -45,8 +48,6 @@ class Car {
    */
   std::string getMake();
 
-  // Mutators
-
   /*
    * @brief Increases the speed of the car by 5 units.
    */
@@ -56,8 +57,4 @@ class Car {
    * @brief Decreases the speed of the car by 5 units
    */
   void brake();
-
-  private: const int m_yearModel;
-  const std::string m_make;
-  int m_speed;
 };
