@@ -1,5 +1,5 @@
 #set to c++ 20 and add error flags
-CPPFLAGS := -std=gnu++20 -pedantic-errors -Wall -Wextra -Werror -stdlib=libc++
+CPPFLAGS := -std=c++2a -pedantic-errors -Wall -Wextra -Werror
 
 # Name the executable
 TARGET = carTest
