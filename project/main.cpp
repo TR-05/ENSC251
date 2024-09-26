@@ -3,6 +3,9 @@
 
 int main()
 {
-    thing();
-    std::cout << "hello world" << std::endl;
+    Parent p;
+    p.print();
+    Child c(5);
+    c.print();
+    c.print2();
 }

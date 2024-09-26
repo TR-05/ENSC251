@@ -1,13 +1,12 @@
 #set to c++ 20 and add error flags
-CPPFLAGS := -std=c++2a -pedantic-errors -Wall -Wextra -Werror
+CPPFLAGS := -std=c++2a -pedantic-errors -Wall -Wextra -Werror -Iinclude
 COMPILER := g++
-
 # Name the executable
-TARGET = project
+TARGET = carTest
 
 # Directories for object files and target
-OBJDIR := obj
-BINDIR := bin
+OBJDIR := build/obj
+BINDIR := build/bin
 
 # Find all .cpp files and corresponding .o files
 SRCS := $(wildcard *.cpp)
