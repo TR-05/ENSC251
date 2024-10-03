@@ -1,9 +1,11 @@
 #include <iostream>
 
-#include "include/dependency.h"
+#include "dependency.h"
+
+Parent::Parent() {}
 
 void Parent::print() {
-    std::cout << "Parent" << std::endl;
+    std::cout << "default" << std::endl;
 }
 
 Child::Child(int x) :

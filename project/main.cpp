@@ -1,5 +1,5 @@
 #include <iostream>
-#include "include/dependency.h"
+#include "dependency.h"
 
 int main()
 {
