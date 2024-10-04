@@ -21,45 +21,43 @@ int main() {
     // Create an array of pointers to ShippingContainer objects
     ShippingContainer* containers[6];
 
-    // Dynamically allocate memory for each object
-    containers[0] = new ManualShippingContainer();
-    containers[1] = new ManualShippingContainer();
-    containers[2] = new ManualShippingContainer();
-    containers[3] = new RFIDShippingContainer();
-    containers[4] = new RFIDShippingContainer();
-    containers[5] = new RFIDShippingContainer();
+    // Instantiate the array with three ManualShippingContainer objects
+    for (int i = 0; i < 3; ++i) {
+        containers[i] = new ManualShippingContainer();
+        containers[i]->setContainerID(i);
+    }
 
-    // Set container IDs
-    containers[0]->setContainerID(27);
-    containers[1]->setContainerID(28);
-    containers[2]->setContainerID(29);
-    containers[3]->setContainerID(35);
-    containers[4]->setContainerID(36);
-    containers[5]->setContainerID(37);
+    // Instantiate the array with three RFIDShippingContainer objects
+    for (int i = 3; i < 6; ++i) {
+        containers[i] = new RFIDShippingContainer();
+        containers[i]->setContainerID(i);
+    }
+
+    // Set the manifest for each container
+    try {
+    dynamic_cast<ManualShippingContainer*>(containers[0])->setManifest("1 crate of pears. 1 crate of pineapples. 1 crate of coconuts");
+    dynamic_cast<ManualShippingContainer*>(containers[1])->setManifest("1 crate of soup. 1 crate of oranges. 1 crate of bananas");
+    dynamic_cast<ManualShippingContainer*>(containers[2])->setManifest("1 crate of apples. 1 crate of oranges. 1 crate of bananas");
+    dynamic_cast<RFIDShippingContainer*>(containers[3])->add("orange");
+    dynamic_cast<RFIDShippingContainer*>(containers[3])->add("pear");
+
+    dynamic_cast<RFIDShippingContainer*>(containers[4])->add("apple");
+    dynamic_cast<RFIDShippingContainer*>(containers[5])->add("banana");
+    }
+    catch (std::bad_cast& e) {
+        std::cerr << "Bad cast caught: " << e.what() << std::endl;
+    }
+
 
     // Print container IDs
     for (int i = 0; i < 6; ++i) {
         std::cout << "Container " << i << " ID: " << containers[i]->getContainerID() << std::endl;
     }
 
-    // Set manifests and add items
-    dynamic_cast<ManualShippingContainer*>(containers[0])->setManifest("This is a manifest for container 0");
-    dynamic_cast<ManualShippingContainer*>(containers[1])->setManifest("This is a manifest for container 1");
-    dynamic_cast<ManualShippingContainer*>(containers[2])->setManifest("This is a manifest for container 2");
 
-    dynamic_cast<RFIDShippingContainer*>(containers[3])->add("crate of pears");
-    dynamic_cast<RFIDShippingContainer*>(containers[3])->add("crate of apples");
-    dynamic_cast<RFIDShippingContainer*>(containers[3])->add("crate of pears");
-
-    dynamic_cast<RFIDShippingContainer*>(containers[4])->add("crate of bananas");
-    dynamic_cast<RFIDShippingContainer*>(containers[4])->add("crate of oranges");
-
-    dynamic_cast<RFIDShippingContainer*>(containers[5])->add("crate of grapes");
-
-    // Print manifests
-    for (int i = 0; i < 6; ++i) {
-        std::cout << "Container " << i << " Manifest: " << containers[i]->getManifest() << std::endl;
+    for (size_t i = 0; i < 6; ++i) {
+        std::cout << "ID: " << containers[i]->getContainerID();
+        std::cout << " Manifest: " << containers[i]->getManifest() << std::endl;
     }
-
     return 0;
 }
