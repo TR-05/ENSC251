@@ -1,5 +1,5 @@
 /**
- * @file ShippingContainer.h
+ * @file ManualShippingContainer.h
  * @author Trevor Ruttan
  * @Date 10/8/2024
  * @version 1.0
@@ -21,40 +21,37 @@
 
 #include <vector>
 
+#include "ShippingContainer.h"
+
 /**
- * @class ShippingContainer
- * @brief A class representing a shipping container.
+ * @class ManualShippingContainer
+ * @brief A class representing a shipping container with a manually set
+ * manifest.
  */
-class ShippingContainer {
+class ManualShippingContainer : public ShippingContainer {
 protected:
-  int containerID; ///< The ID of the container.
+  std::string manifest; ///< The manifest of the container.
 
 public:
   /**
-   * @brief Default constructor for ShippingContainer.
+   * @brief Constructor for ManualShippingContainer.
    */
-  ShippingContainer();
+  ManualShippingContainer();
 
   /**
-   * @brief Destructor for ShippingContainer.
+   * @brief Destructor for ManualShippingContainer.
    */
-  ~ShippingContainer();
+  ~ManualShippingContainer();
 
   /**
-   * @brief Gets the container ID.
-   * @return The ID of the container.
+   * @brief Sets the manifest of the container.
+   * @param manifest The new manifest of the container.
    */
-  int getContainerID();
-
-  /**
-   * @brief Sets the container ID.
-   * @param containerID The new ID of the container.
-   */
-  void setContainerID(int containerID);
+  void setManifest(std::string manifest);
 
   /**
    * @brief Gets the manifest of the container.
    * @return A string representing the manifest of the container.
    */
-  virtual std::string getManifest();
+  std::string getManifest() override;
 };

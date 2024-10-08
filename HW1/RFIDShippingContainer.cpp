@@ -16,7 +16,7 @@
 
 #include <string>
 
-#include "ShippingContainer.h"
+#include "RFIDShippingContainer.h"
 
 /*
  * @brief Constructor for the ShippingContainer class.
