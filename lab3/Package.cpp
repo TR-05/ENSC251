@@ -41,7 +41,13 @@ Package::Package(std::string senderName, std::string senderAddress,
                  std::string recipientAddress, std::string recipientCity,
                  std::string recipientState, std::string recipientZip,
                  double weight, double costPerOunce)
-    : weight(weight ? weight > 0 : 0), costPerOunce(costPerOunce ? costPerOunce > 0 : 0) {
+    : weight(weight), costPerOunce(costPerOunce) {
+  if (weight < 0) {
+    weight = 0;
+  }
+  if (costPerOunce < 0) {
+    costPerOunce = 0;
+  }
   sender.name = senderName;
   sender.address = senderAddress;
   sender.city = senderCity;

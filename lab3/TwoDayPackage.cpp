@@ -47,7 +47,8 @@ TwoDayPackage::TwoDayPackage(std::string senderName, std::string senderAddress,
     : Package(senderName, senderAddress, senderCity, senderState, senderZip,
               recipientName, recipientAddress, recipientCity, recipientState,
               recipientZip, weight, costPerOunce),
-      flatFee(flatFee) {}
+      flatFee(flatFee) {
+      }
 
 /**
  * @brief Calculates the cost of shipping the package with the two-day delivery

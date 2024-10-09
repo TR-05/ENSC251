@@ -58,8 +58,6 @@ public:
                 double weight, double costPerOunce, double flatFee);
 
   /**
-
-  /**
    * @brief Calculates the cost of shipping the package with the two-day
    * delivery fee.
    *

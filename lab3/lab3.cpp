@@ -23,9 +23,14 @@
 #include "TwoDayPackage.h"
 
 int main() {
-  Package package("Stan Lee", "123 Main St", "ComicTown", "NY", "12345", 10, 2.5);
-  TwoDayPackage twoDayPackage("Herbert Tsang", "456 Parkway", "Burnaby", "BC", "67890", 10, 2.5, 5);
-  OvernightPackage overnightPackage("Joe Biden", "1 White House St", "Washington DC", "PA", "13579", 10, 2.5, 2.5);
+Package package("Craig Scratchley", "ASB 9800", "Burnaby", "BC", "123456",
+                "Herbert Tsang", "AQ 3182", "Burnaby", "BC", "123456", 10, 2.5);
+
+TwoDayPackage twoDayPackage("Mike S", "AQ 3181", "Burnaby", "BC", "123456",
+                            "Mike H", "ASB 9801", "Burnaby", "BC", "123456", 10, 2.5, 5);
+
+OvernightPackage overnightPackage("Kamala Harris", "2 Capitol Hill", "Washington DC", "DC", "205033",
+                                  "Joe Biden", "1 White House St", "Washington DC", "PA", "135793", 10, 2.5, 1.5);
 
   std::cout << "Package cost: $" << package.calculateCost() << std::endl;
   std::cout << "Two-day package cost: $" << twoDayPackage.calculateCost() << std::endl;
