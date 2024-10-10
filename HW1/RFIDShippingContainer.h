@@ -43,7 +43,7 @@ public:
   /**
    * @brief Destructor for RFIDShippingContainer.
    */
-  ~RFIDShippingContainer();
+  virtual ~RFIDShippingContainer();
 
   /**
    * @brief Adds an item to the container.

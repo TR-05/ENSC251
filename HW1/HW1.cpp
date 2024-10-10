@@ -17,6 +17,8 @@
 
 #include <iostream>
 
+#include <memory>
+
 #include "ShippingContainer.h"
 
 #include "ManualShippingContainer.h"
@@ -24,7 +26,6 @@
 #include "RFIDShippingContainer.h"
 
 int main() {
-  // Create an array of pointers to ShippingContainer objects
   ShippingContainer *containers[6];
 
   // Instantiate the array with three ManualShippingContainer objects
@@ -55,6 +56,7 @@ int main() {
 
     dynamic_cast<RFIDShippingContainer *>(containers[4])->add("apple");
     dynamic_cast<RFIDShippingContainer *>(containers[5])->add("banana");
+
   } catch (std::bad_cast &e) {
     std::cerr << "Bad cast caught: " << e.what() << std::endl;
   }

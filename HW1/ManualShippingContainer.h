@@ -41,7 +41,7 @@ public:
   /**
    * @brief Destructor for ManualShippingContainer.
    */
-  ~ManualShippingContainer();
+  virtual ~ManualShippingContainer();
 
   /**
    * @brief Sets the manifest of the container.
