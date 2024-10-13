@@ -27,23 +27,22 @@
  * @class RFIDShippingContainer
  * @brief A class representing a shipping container with RFID capabilities.
  */
-class RFIDShippingContainer : public ShippingContainer {
-protected:
-  std::vector<std::string>
-      items;                 ///< Vector to store the items in the container.
-  std::vector<int> numItems; ///< Vector to store the number of each item, using
-                             ///< the same index.
+class RFIDShippingContainer: public ShippingContainer {
+  protected: std::vector < std::string >
+    items; ///< Vector to store the items in the container.
+  std::vector < int > numItems; ///< Vector to store the number of each item, using
+  ///< the same index.
 
-public:
-  /**
-   * @brief Constructor for RFIDShippingContainer.
-   */
-  RFIDShippingContainer();
+  public:
+    /**
+     * @brief Constructor for RFIDShippingContainer.
+     */
+    RFIDShippingContainer();
 
   /**
    * @brief Destructor for RFIDShippingContainer.
    */
-  virtual ~RFIDShippingContainer();
+  ~RFIDShippingContainer();
 
   /**
    * @brief Adds an item to the container.

@@ -18,34 +18,30 @@
 
 #include "ManualShippingContainer.h"
 
-/*
+/**
  * @brief Constructor for the ShippingContainer class.
  * @param containerID The ID of the container.
  */
-ManualShippingContainer::ManualShippingContainer() {
-}
+ManualShippingContainer::ManualShippingContainer() {}
 
-/*
+/**
  * @brief Destructor for the ShippingContainer class.
  */
-ManualShippingContainer::~ManualShippingContainer() {
-}
+ManualShippingContainer::~ManualShippingContainer() {}
 
-/*
+/**
  * @brief Sets the manifest of the container.
  * @param manifest The manifest of the container.
  * @return void
  */
- void ManualShippingContainer::setManifest(std::string manifest)
-{
-  this->manifest = manifest;
+void ManualShippingContainer::setManifest(std::string manifest) {
+  this -> manifest = manifest;
 }
 
-/*
+/**
  * @brief Gets the manifest of the container.
  * @return void
  */
 std::string ManualShippingContainer::getManifest() {
-  return this->manifest;
+  return this -> manifest;
 }
-

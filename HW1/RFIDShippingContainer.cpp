@@ -18,20 +18,18 @@
 
 #include "RFIDShippingContainer.h"
 
-/*
+/**
  * @brief Constructor for the ShippingContainer class.
  * @param containerID The ID of the container.
  */
-RFIDShippingContainer::RFIDShippingContainer() {
-}
+RFIDShippingContainer::RFIDShippingContainer() {}
 
-/*
+/**
  * @brief Destructor for the ShippingContainer class.
  */
-RFIDShippingContainer::~RFIDShippingContainer() {
-}
+RFIDShippingContainer::~RFIDShippingContainer() {}
 
-/*
+/**
  * @brief Gets the manifest of the container.
  * @return void
  */
@@ -43,7 +41,7 @@ std::string RFIDShippingContainer::getManifest() {
   return manifest;
 }
 
-/*
+/**
  * @brief Adds an item to the container.
  * @param item The item to add to the container.
  * @return void

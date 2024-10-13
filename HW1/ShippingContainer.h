@@ -26,19 +26,18 @@
  * @brief A class representing a shipping container.
  */
 class ShippingContainer {
-protected:
-  int containerID; ///< The ID of the container.
+  protected: int containerID; ///< The ID of the container.
 
-public:
-  /**
-   * @brief Default constructor for ShippingContainer.
-   */
-  ShippingContainer();
+  public:
+    /**
+     * @brief Default constructor for ShippingContainer.
+     */
+    ShippingContainer();
 
   /**
    * @brief Destructor for ShippingContainer.
    */
-  ~ShippingContainer();
+  virtual~ShippingContainer();
 
   /**
    * @brief Gets the container ID.

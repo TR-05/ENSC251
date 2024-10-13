@@ -18,38 +18,35 @@
 
 #include "ShippingContainer.h"
 
-/*
+/**
  * @brief Constructor for the ShippingContainer class.
  * @param containerID The ID of the container.
  */
-ShippingContainer::ShippingContainer() 
-  : containerID(0) {
-}
+ShippingContainer::ShippingContainer(): containerID(0) {}
 
-/*
+/**
  * @brief Destructor for the ShippingContainer class.
  */
-ShippingContainer::~ShippingContainer() {
-}
+ShippingContainer::~ShippingContainer() {}
 
-/*
+/**
  * @brief Gets the container ID.
  * @return int The container ID.
  */
 int ShippingContainer::getContainerID() {
-  return this->containerID;
+  return this -> containerID;
 }
 
-/*
+/**
  * @brief Sets the container ID.
  * @param containerID The ID of the container.
  * @return void
  */
 void ShippingContainer::setContainerID(int containerID) {
-  this->containerID = containerID;
+  this -> containerID = containerID;
 }
 
-/*
+/**
  * @brief Gets the manifest of the container.
  * @return void
  */
@@ -57,4 +54,3 @@ std::string ShippingContainer::getManifest() {
   std::string manifest = "";
   return manifest;
 }
-
