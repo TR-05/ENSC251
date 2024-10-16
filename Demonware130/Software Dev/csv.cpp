@@ -76,6 +76,6 @@ int main()
 
 
 /*
-g++ Task3.cpp -o Task3
-./Task3
+g++ csv.cpp -o csv
+./csv
 */

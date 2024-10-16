@@ -1,0 +1,14 @@
+SQL code, did it in the browser because I don't know how to run it locally on my machine.
+
+-- Plan: 
+-- Order the days in case they are given out non-sequentially also find the previous and next prices for each price. Once ordered select the days where prev < price < next, and order by day.
+WITH orderedDays AS (
+    SELECT day, price,
+           LAG(price) OVER (ORDER BY day) AS previous_price,
+           LEAD(price) OVER (ORDER BY day) AS next_price
+    FROM prices
+)
+SELECT day
+FROM orderedDays
+WHERE price > previous_price AND price > next_price
+ORDER BY day;
