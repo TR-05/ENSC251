@@ -21,30 +21,24 @@ using namespace std;
 #include "pairs.h"
 
 int main() {
-  cout << "Hello, World!" << endl;
   Pairs p1;
   Pairs p2(1);
   Pairs p3(2, 3);
 
+  //Test overloaded output operator
   cout << "p1: " << p1 << endl;
   cout << "p2: " << p2 << endl;
   cout << "p3: " << p3 << endl;
 
-  p1 = p2 + p3;
+  //Test overloaded arithmetic operators
+  cout << "p2+p3: " << p2+p3 << endl;
+  cout << "p2-p3: " << p2-p3 << endl;
+  cout << "p2*p3: " << p2*p3 << endl;
 
-  cout << "p1: " << p1 << endl;
-
-  p1 = p2 - p3;
-
-  cout << "p1: " << p1 << endl;
-
-  p1 = p2 * p3;
-
-  cout << "p1: " << p1 << endl;
-
+  //Test overloaded input operator
   cout << "Enter a pair of numbers: ";
-
-  cin >> p1;
-  cout << p1 << "\n";
+  Pairs pInput;
+  cin >> pInput;
+  cout << "Input Pair: " << pInput << "\n";
   return 0;
 }

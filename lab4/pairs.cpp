@@ -21,49 +21,112 @@
 
 using namespace std;
 
+/**
+ * @brief Default constructor for Pairs
+ */
 Pairs::Pairs() {
   firstNumber = 0;
   secondNumber = 0;
 }
 
+/**
+ * @brief Constructor for Pairs, taking in one integer input, setting the second
+ * number to 0
+ * @param first The first number in the pair
+ */
 Pairs::Pairs(int first) {
   firstNumber = first;
   secondNumber = 0;
 }
 
+/**
+ * @brief Constructor for Pairs, taking in two integer inputs
+ * @param first The first number in the pair
+ * @param second The second number in the pair
+ */
 Pairs::Pairs(int first, int second) {
   firstNumber = first;
   secondNumber = second;
 }
 
-istream &operator>>(istream &ins, Pairs &second) {
-
+/**
+ * @brief Overloaded input operator for Pairs, reads input in the form '(int,
+ * int)', if formatted incorrectly, does not modify object
+ * @param ins The input stream
+ * @param pair The Pairs object to modify
+ */
+istream &operator>>(istream &ins, Pairs &pair) {
+  Pairs temp;
   char ch;
-  ins >> ch;
-  ins >> second.firstNumber;
+
   ins >> ch;
 
-  ins >> second.secondNumber;
+  if (ch != '(') {
+    cout << "Incorrect Format Inputted, Not Modifying Object" << endl;
+    return ins;
+  }
+
+  if (!(ins >> temp.firstNumber)) {
+    cout << "Incorrect Format Inputted, Not Modifying Object" << endl;
+    return ins;
+  }
+
   ins >> ch;
+
+  if (ch != ',') {
+    cout << "Incorrect Format Inputted, Not Modifying Object" << endl;
+    return ins;
+  }
+
+  if (!(ins >> temp.secondNumber)) {
+    cout << "Incorrect Format Inputted, Not Modifying Object" << endl;
+    return ins;
+  }
+
+  ins >> ch;
+  if (ch != ')') {
+    cout << "Incorrect Format Inputted, Not Modifying Object" << endl;
+    return ins;
+  }
+
+  pair = temp;
 
   return ins;
 }
 
-ostream &operator<<(ostream &outs, const Pairs &second) {
-  outs << "(" << second.firstNumber << ", " << second.secondNumber << ")";
+/**
+ * @brief Overloaded output operator for Pairs, outputs Pair in the form '(int,
+ * int)'
+ * @param outs The output stream
+ * @param pair The Pairs object to modify
+ */
+ostream &operator<<(ostream &outs, const Pairs &pair) {
+  outs << "(" << pair.firstNumber << "," << pair.secondNumber << ")";
   return outs;
 }
 
+/**
+ * @brief Overloaded addition operator for Pairs, adds two Pairs together in the
+ * form (a, b) + (c, d) = (a + c, b + d)
+ */
 Pairs operator+(const Pairs &first, const Pairs &second) {
   return Pairs(first.firstNumber + second.firstNumber,
                first.secondNumber + second.secondNumber);
 }
 
+/**
+ * @brief Overloaded subtraction operator for Pairs, subtracts two Pairs
+ * together in the form (a, b) - (c, d) = (a - c, b - d)
+ */
 Pairs operator-(const Pairs &first, const Pairs &second) {
   return Pairs(first.firstNumber - second.firstNumber,
                first.secondNumber - second.secondNumber);
 }
 
+/**
+ * @brief Overloaded multiplication operator for Pairs, multiplies two Pairs
+ * together in the form (a, b) * (c, d) = (a * c, b * d)
+ */
 Pairs operator*(const Pairs &first, const Pairs &second) {
   return Pairs(first.firstNumber * second.firstNumber,
                first.secondNumber * second.secondNumber);
