@@ -51,7 +51,7 @@ Pairs::Pairs(int first, int second) {
 
 /**
  * @brief Overloaded input operator for Pairs, reads input in the form '(int,
- * int)', if formatted incorrectly, does not modify object
+ * int)', if formatted incorrectly, does not modify object and continues
  * @param ins The input stream
  * @param pair The Pairs object to modify
  */
@@ -62,30 +62,35 @@ istream &operator>>(istream &ins, Pairs &pair) {
   ins >> ch;
 
   if (ch != '(') {
-    cout << "Incorrect Format Inputted, Not Modifying Object" << endl;
+    cout << "Incorrect Format Inputted, Not Modifying Object And Continuing"
+         << endl;
     return ins;
   }
 
   if (!(ins >> temp.firstNumber)) {
-    cout << "Incorrect Format Inputted, Not Modifying Object" << endl;
+    cout << "Incorrect Format Inputted, Not Modifying Object And Continuing"
+         << endl;
     return ins;
   }
 
   ins >> ch;
 
   if (ch != ',') {
-    cout << "Incorrect Format Inputted, Not Modifying Object" << endl;
+    cout << "Incorrect Format Inputted, Not Modifying Object And Continuing"
+         << endl;
     return ins;
   }
 
   if (!(ins >> temp.secondNumber)) {
-    cout << "Incorrect Format Inputted, Not Modifying Object" << endl;
+    cout << "Incorrect Format Inputted, Not Modifying Object And Continuing"
+         << endl;
     return ins;
   }
 
   ins >> ch;
   if (ch != ')') {
-    cout << "Incorrect Format Inputted, Not Modifying Object" << endl;
+    cout << "Incorrect Format Inputted, Not Modifying Object And Continuing"
+         << endl;
     return ins;
   }
 
@@ -95,10 +100,10 @@ istream &operator>>(istream &ins, Pairs &pair) {
 }
 
 /**
- * @brief Overloaded output operator for Pairs, outputs Pair in the form '(int,
- * int)'
+ * @brief Overloaded output operator for Pairs, outputs Pair in the form
+ * '(int, int)'
  * @param outs The output stream
- * @param pair The Pairs object to modify
+ * @param pair The Pairs object to output
  */
 ostream &operator<<(ostream &outs, const Pairs &pair) {
   outs << "(" << pair.firstNumber << "," << pair.secondNumber << ")";
@@ -106,8 +111,11 @@ ostream &operator<<(ostream &outs, const Pairs &pair) {
 }
 
 /**
- * @brief Overloaded addition operator for Pairs, adds two Pairs together in the
- * form (a, b) + (c, d) = (a + c, b + d)
+ * @brief Overloaded addition operator for Pairs, adds two Pairs together in
+ * the form (a, b) + (c, d) = (a + c, b + d)
+ * @param first The first Pairs object to modify
+ * @param second The second Pairs object to modify
+ * @return The sum of the two Pairs
  */
 Pairs operator+(const Pairs &first, const Pairs &second) {
   return Pairs(first.firstNumber + second.firstNumber,
@@ -117,6 +125,9 @@ Pairs operator+(const Pairs &first, const Pairs &second) {
 /**
  * @brief Overloaded subtraction operator for Pairs, subtracts two Pairs
  * together in the form (a, b) - (c, d) = (a - c, b - d)
+ * @param first The first Pairs object to modify
+ * @param second The second Pairs object to modify
+ * @return Pairs The result of the subtraction
  */
 Pairs operator-(const Pairs &first, const Pairs &second) {
   return Pairs(first.firstNumber - second.firstNumber,
@@ -126,6 +137,9 @@ Pairs operator-(const Pairs &first, const Pairs &second) {
 /**
  * @brief Overloaded multiplication operator for Pairs, multiplies two Pairs
  * together in the form (a, b) * (c, d) = (a * c, b * d)
+ * @param first The first Pairs object to modify
+ * @param second The second Pairs object to modify
+ * @return Pairs The result of the multiplication
  */
 Pairs operator*(const Pairs &first, const Pairs &second) {
   return Pairs(first.firstNumber * second.firstNumber,

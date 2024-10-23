@@ -25,20 +25,21 @@ int main() {
   Pairs p2(1);
   Pairs p3(2, 3);
 
-  //Test overloaded output operator
+  // Test overloaded output operator
   cout << "p1: " << p1 << endl;
   cout << "p2: " << p2 << endl;
   cout << "p3: " << p3 << endl;
 
-  //Test overloaded arithmetic operators
-  cout << "p2+p3: " << p2+p3 << endl;
-  cout << "p2-p3: " << p2-p3 << endl;
-  cout << "p2*p3: " << p2*p3 << endl;
-
-  //Test overloaded input operator
-  cout << "Enter a pair of numbers: ";
+  // Test overloaded input operator
+  cout << "Enter a pair of numbers in form (a,b): ";
   Pairs pInput;
   cin >> pInput;
-  cout << "Input Pair: " << pInput << "\n";
+  cout << "Input Pair: " << pInput << endl;
+
+  // Test overloaded arithmetic operators
+  cout << "pInput+p3: " << pInput + p3 << endl;
+  cout << "pInput-p3: " << pInput - p3 << endl;
+  cout << "pInput*p3: " << pInput * p3 << endl;
+
   return 0;
 }

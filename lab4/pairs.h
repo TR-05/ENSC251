@@ -43,7 +43,7 @@ public:
 
   /**
    * @brief Overloaded input operator for Pairs, reads input in the form '(int,
-   * int)', if formatted incorrectly, does not modify object
+   * int)', if formatted incorrectly, does not modify object and continues
    * @param ins The input stream
    * @param pair The Pairs object to modify
    */
@@ -53,25 +53,34 @@ public:
    * @brief Overloaded output operator for Pairs, outputs Pair in the form
    * '(int, int)'
    * @param outs The output stream
-   * @param pair The Pairs object to modify
+   * @param pair The Pairs object to output
    */
   friend ostream &operator<<(ostream &outs, const Pairs &pair);
 
   /**
    * @brief Overloaded addition operator for Pairs, adds two Pairs together in
    * the form (a, b) + (c, d) = (a + c, b + d)
+   * @param first The first Pairs object to use
+   * @param second The second Pairs object to use
+   * @return The sum of the two Pairs
    */
   friend Pairs operator+(const Pairs &first, const Pairs &second);
 
   /**
    * @brief Overloaded subtraction operator for Pairs, subtracts two Pairs
    * together in the form (a, b) - (c, d) = (a - c, b - d)
+   * @param first The first Pairs object to use
+   * @param second The second Pairs object to use
+   * @return Pairs The result of the subtraction
    */
   friend Pairs operator-(const Pairs &first, const Pairs &second);
 
   /**
    * @brief Overloaded multiplication operator for Pairs, multiplies two Pairs
    * together in the form (a, b) * (c, d) = (a * c, b * d)
+   * @param first The first Pairs object to use
+   * @param second The second Pairs object to use
+   * @return Pairs The result of the multiplication
    */
   friend Pairs operator*(const Pairs &first, const Pairs &second);
 
