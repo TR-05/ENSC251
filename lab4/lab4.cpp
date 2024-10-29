@@ -20,7 +20,17 @@
 using namespace std;
 #include "pairs.h"
 
+class Test {
+  public:
+  static void foo() {
+    cout << "foo" << endl;
+  }
+};
+
 int main() {
+  Test::foo();
+  Test test;
+  test.foo();
   Pairs p1;
   Pairs p2(1);
   Pairs p3(2, 3);
