@@ -20,6 +20,10 @@
 
 using namespace std;
 
+/**
+ * @brief TimeFormatMistake is a custom exception class that is thrown when the user enters an invalid time.
+ * 
+ */
 class TimeFormatMistake : public std::exception {
     private:
     string message;
