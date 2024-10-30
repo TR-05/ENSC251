@@ -15,58 +15,13 @@
 // ____ 301580889 ______
 //
 
-#include "TimeFormatMistake.h"
-#include <iostream>
-#include <string_view>
+#include "InputHandling.h"
 
 using namespace std;
 
-bool checkInputTime(string input) {
-  bool inputError = false;
-  string_view inputView = input;
-  if (inputView.size() > 8) {
-    inputError = true;
-  }
-  if (inputView.size() == 7) {
-    //inputView.;
-  }
-
-  size_t colonPos = inputView.find_first_of(":");
-  if (colonPos == string::npos or colonPos == 0 or colonPos > 2) {
-    inputError = true;
-  }
 
 
-  if (inputError) {
-    try {
-      string output = "There is no such time as " + input;
-      cout << output << endl;
-      throw TimeFormatMistake(output.c_str());
-    } catch (TimeFormatMistake tfm) {
-      cout << tfm.what();
-    }
-  }
-  return inputError;
+int main() { 
+  pollInput(); 
+  return 0; 
 }
-
-void pollInput() {
-  char continueInput = 'y';
-  string timeInput = "";
-  while (true) {
-    cout << "Enter time in 24-hour notation:\n";
-    cin >> timeInput;
-    if (checkInputTime(timeInput) ) {
-      cout << "Try again:\n";
-      continue;
-    }
-
-    cout << "Again?(y/n) \n";
-    cin >> continueInput;
-    if (continueInput != 'y' and continueInput != 'Y') {
-      cout << "End of program\n";
-      break;
-    }
-  }
-}
-
-int main() { pollInput(); }

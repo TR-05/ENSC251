@@ -18,13 +18,17 @@
 #include <iostream>
 #include <exception>
 
+using namespace std;
+
 class TimeFormatMistake : public std::exception {
     private:
-    const char * message;
-
+    string message;
+    string standardMessage = "There is no such time as ";
+    string outputMessage = "";  
     public:
-    TimeFormatMistake(const char * msg) : message(msg) {}
+    TimeFormatMistake(const std::string& msg) : message(msg) {}
     const char * what () {
-        return message;
+        outputMessage = standardMessage + message + "\n";
+        return (outputMessage.c_str());
     }
 };
