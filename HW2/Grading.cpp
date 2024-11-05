@@ -17,15 +17,19 @@
 
 #include "Grading.h"
 
-Grading::Grading() : numAssignments(0), maxScorePerAssignment(0) {
+Grading::Grading() : numAssignments(0) {
   try {
     cout << "Enter number of assignments: ";
     cin >> numAssignments;
     if (numAssignments < 0) {
       throw invalid_argument("Number of assignments cannot be less than 0.");
     }
-    cout << "Enter maximum score per assignment: ";
-    cin >> maxScorePerAssignment;
+    cout << "Enter maximum score per assignment: \n";
+    maxGradeForAssignmnent.resize(numAssignments);
+    for (int i = 0; i < numAssignments; ++i) {
+      cout << "Assignment " << i + 1 << " Max Score: ";
+      cin >> maxGradeForAssignmnent[i];
+    }
 
     while (true) {
       string name;
@@ -37,8 +41,9 @@ Grading::Grading() : numAssignments(0), maxScorePerAssignment(0) {
       if (name == "exit")
         break;
 
-      cout << "Enter grades for " << numAssignments << " assignments: ";
+      cout << "Enter Scores For " << name << endl;
       for (int i = 0; i < numAssignments; ++i) {
+        cout << "Assignment " << i + 1 << " Score: ";
         cin >> grades[i];
       }
 
@@ -60,13 +65,19 @@ void Grading::addStudent(string name, vector<int> grades) {
         "Number of grades does not match number of assignments.");
   }
   int totalScore = 0;
-  for (int grade : grades) {
-    if (grade < 0 || grade > maxScorePerAssignment) {
+  for (int i = 0; i < numAssignments; ++i) {
+    if (grades[i] < 0 || grades[i] > maxGradeForAssignmnent[i]) {
       throw invalid_argument("Invalid grade value.");
     }
-    totalScore += grade;
+    totalScore += grades[i];
   }
-  if (totalScore > maxScorePerAssignment * numAssignments) {
+
+  int maxScore = 0;
+  for (auto grade : maxGradeForAssignmnent) {
+    maxScore += grade;
+  }
+
+  if (totalScore > maxScore) {
     throw invalid_argument("Total score exceeds maximum allowed score.");
   }
   students[name] = Student(name, grades);

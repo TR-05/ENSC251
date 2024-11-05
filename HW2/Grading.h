@@ -27,8 +27,7 @@ class Grading {
 private:
   unordered_map<string, Student> students;
   int numAssignments;
-  int maxScorePerAssignment;
-
+  vector<int> maxGradeForAssignmnent;
 public:
   Grading();
 

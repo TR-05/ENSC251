@@ -16,6 +16,7 @@
 //
 
 #include "Book.h"
+#include <cctype>
 
 /**
  * @brief Default constructor for the Book class.
@@ -66,4 +67,14 @@ string Book::getYear() { return year; }
  * author of the other book.
  * @return false otherwise.
  */
-bool Book::operator<(const Book &other) const { return author < other.author; }
+bool Book::operator<(const Book &other) const {
+  string upperAuthor;
+  for (char ch : author) {
+    upperAuthor += toupper(ch);
+  }
+  string upperOtherAuthor;
+  for (char ch : other.author) {
+    upperOtherAuthor += toupper(ch);
+  }
+  return upperAuthor < upperOtherAuthor;
+}
