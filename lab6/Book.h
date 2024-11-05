@@ -15,7 +15,7 @@
 // ____ 301580889 ______
 //
 
-#pragma once 
+#pragma once
 
 #include <iostream>
 #include <string>
@@ -23,15 +23,55 @@
 using namespace std;
 
 class Book {
-    private:
-        string title;
-        string author;
-        string year;
-    public:
-        Book();
-        Book(string title, string author, string year);
-        string getTitle();
-        string getAuthor();
-        string getYear();
-        bool operator<(const Book &other) const;
-};  
+private:
+  string title;
+  string author;
+  string year;
+
+public:
+  /**
+   * @brief Default constructor for the Book class.
+   * Initializes the title, author, and year to empty strings.
+   */
+  Book();
+
+  /**
+   * @brief Parameterized constructor for the Book class.
+   *
+   * @param title The title of the book.
+   * @param author The author of the book.
+   * @param year The publication year of the book.
+   */
+  Book(string title, string author, string year);
+
+  /**
+   * @brief Gets the title of the book.
+   *
+   * @return The title of the book.
+   */
+  string getTitle();
+
+  /**
+   * @brief Gets the author of the book.
+   *
+   * @return The author of the book.
+   */
+  string getAuthor();
+
+  /**
+   * @brief Gets the publication year of the book.
+   *
+   * @return The publication year of the book.
+   */
+  string getYear();
+
+  /**
+   * @brief Overloads the less-than operator to compare books by author.
+   *
+   * @param other The other book to compare with.
+   * @return true if the author of this book is lexicographically less than the
+   * author of the other book.
+   * @return false otherwise.
+   */
+  bool operator<(const Book &other) const;
+};

@@ -17,6 +17,7 @@
 
 #pragma once
 
-void printMenu();
-
+/**
+ * @brief Runs the main interface loop, displaying the menu and handling user input.
+ */
 void interfaceLoop();

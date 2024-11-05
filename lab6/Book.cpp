@@ -17,30 +17,53 @@
 
 #include "Book.h"
 
+/**
+ * @brief Default constructor for the Book class.
+ * Initializes the title, author, and year to empty strings.
+ */
 Book::Book() {
-    title = "";
-    author = "";
-    year = "";
+  title = "";
+  author = "";
+  year = "";
 }
 
-Book::Book(string title, string author, string year) {
-    this->title = title;
-    this->author = author;
-    this->year = year;
-}
+/**
+ * @brief Parameterized constructor for the Book class.
+ *
+ * @param title The title of the book.
+ * @param author The author of the book.
+ * @param year The publication year of the book.
+ */
+Book::Book(string title, string author, string year)
+    : title(title), author(author), year(year) {}
 
-string Book::getTitle() {
-    return title;
-}
+/**
+ * @brief Gets the title of the book.
+ *
+ * @return The title of the book.
+ */
+string Book::getTitle() { return title; }
 
-string Book::getAuthor() {
-    return author;
-}
+/**
+ * @brief Gets the author of the book.
+ *
+ * @return The author of the book.
+ */
+string Book::getAuthor() { return author; }
 
-string Book::getYear() {
-    return year;
-}
+/**
+ * @brief Gets the publication year of the book.
+ *
+ * @return The publication year of the book.
+ */
+string Book::getYear() { return year; }
 
-bool Book::operator<(const Book &other) const {
-    return author < other.author;
-}
+/**
+ * @brief Overloads the less-than operator to compare books by author.
+ *
+ * @param other The other book to compare with.
+ * @return true if the author of this book is lexicographically less than the
+ * author of the other book.
+ * @return false otherwise.
+ */
+bool Book::operator<(const Book &other) const { return author < other.author; }

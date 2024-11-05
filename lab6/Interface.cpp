@@ -17,12 +17,17 @@
 
 #include "Interface.h"
 #include "Book.h"
+#include <algorithm>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
 vector<Book> books;
 
+/**
+ * @brief Prints the menu options to the console.
+ */
 void printMenu() {
   cout << "Select from the following choices:" << endl;
   cout << "1. Add new book" << endl;
@@ -30,6 +35,10 @@ void printMenu() {
   cout << "3. Quit" << endl;
 }
 
+/**
+ * @brief Prompts the user to enter details for a new book and adds it to the
+ * collection.
+ */
 void addNewBook() {
   string title;
   string author;
@@ -45,6 +54,9 @@ void addNewBook() {
   books.push_back(newBook);
 }
 
+/**
+ * @brief Prints the list of books sorted by author.
+ */
 void PrintSorted() {
   cout << "The books entered so far, sorted alphabetically by author are:"
        << endl;
@@ -56,8 +68,15 @@ void PrintSorted() {
          << book.getYear() << "." << endl;
   }
 }
+
+/**
+ * @brief Handles the user's menu selection and performs the corresponding
+ * action.
+ *
+ * @return true if the user chooses to quit, false otherwise.
+ */
 bool select() {
-    bool quit = false;
+  bool quit = false;
   int choice;
   cin >> choice;
   switch (choice) {
@@ -79,6 +98,10 @@ bool select() {
   }
 }
 
+/**
+ * @brief Runs the main interface loop, displaying the menu and handling user
+ * input.
+ */
 void interfaceLoop() {
   while (true) {
     printMenu();
