@@ -22,7 +22,24 @@
 
 using namespace std;
 
+/*
+• An exception should be raised if the number of assignments is less than 0.
+• An exception should be raised if any assignment score is less than 0.
+• An exception should be raised if the total scores for the assignments exceeds maximum
+allowed score for each assignment x number of assignments.
+• An exception should be raised if grades are entered for a student whose name has already
+been recorded in the program.
+• An exception should be raised if any score is below 0 or exceeds the maximum allowed
+score for a given assignment.
+*/
+
 int main() {
+  // type -1 when prompted for # of assignments to trigger exception 1
+  // type -1 when prompted for assignment score to trigger exception 2
+  // exception 3 is not triggerable through user input as exception 5 will be triggered first
+  // input any student then input a second with the same name to trigger exception 4
+  // type 101 when prompted for assignment score to trigger exception 5
+
   Grading system;
 
   return 0;
