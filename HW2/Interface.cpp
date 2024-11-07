@@ -1,7 +1,7 @@
 /**
  * @file Interface.cpp
  * @author Trevor Ruttan
- * @Date 11/6/2024
+ * @Date 11/7/2024
  * @version 1.0
  * @section DESCRIPTION
  */
@@ -18,17 +18,39 @@
 #include "Student.h"
 #include <exception>
 #include <iostream>
+#include <sstream>
 #include <stdexcept>
 #include <unordered_map>
 #include <vector>
 
 using namespace std;
 
+/**
+ * @brief Prompts the user to enter the number of assignments.
+ * @throws invalid_argument if the number of assignments is less than 0.
+ */
 void enterNumAssignments();
+
+/**
+ * @brief Prompts the user to enter a student's name.
+ * @throws invalid_argument if the student name is already recorded.
+ */
 void enterStudentName();
+
+/**
+ * @brief Prompts the user to enter a student's scores.
+ * @throws invalid_argument if any score is invalid or the total score exceeds the maximum allowed score.
+ */
 void enterStudentScores();
+
+/**
+ * @brief Checks if the user wants to add another student.
+ */
 void checkIfDone();
 
+/**
+ * @brief Enumeration for the different steps in the interface.
+ */
 enum STEP {
   promptNumAssignments,
   promptStudentName,
@@ -40,6 +62,10 @@ int numAssignments = 0;
 unordered_map<string, Student> students;
 string currentStudent = "";
 bool finished = false;
+
+/**
+ * @brief Main interface function that handles the different steps and loops.
+ */
 void interface() {
   while (!finished) {
     switch (step) {
@@ -69,6 +95,10 @@ void interface() {
   }
 }
 
+/**
+ * @brief Prompts the user to enter the number of assignments.
+ * @throws invalid_argument if the number of assignments is less than 0.
+ */
 void enterNumAssignments() {
   try {
     int newNumAssignments = 0;
@@ -86,20 +116,25 @@ void enterNumAssignments() {
   }
 }
 
+/**
+ * @brief Prompts the user to enter a student's name.
+ * @throws invalid_argument if the student name is already recorded.
+ */
 void enterStudentName() {
+
   try {
     string name;
-    cout << "Enter student name: " << endl;
-    //cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    //cin.clear();
-    cin.ignore();
-    cout << "  ";
-    getline(cin, name);
-    Student newStudent;
-    newStudent.setName(name);
+    cout << "Enter student first name: " << endl;
+    cin >> name;
+    string lastName;
+    cout << "Enter student last name: " << endl;
+    cin >> lastName;
+    name += " " + lastName;
     if (students.find(name) != students.end()) {
       throw invalid_argument("Student name already recorded.");
     } else {
+      Student newStudent;
+      newStudent.setName(name);
       students[name] = newStudent;
       step = promptStudentScores;
       currentStudent = name;
@@ -110,6 +145,10 @@ void enterStudentName() {
   }
 }
 
+/**
+ * @brief Prompts the user to enter a student's scores.
+ * @throws invalid_argument if any score is invalid or the total score exceeds the maximum allowed score.
+ */
 void enterStudentScores() {
   try {
     vector<int> grades(numAssignments, 0);
@@ -140,6 +179,9 @@ void enterStudentScores() {
   }
 }
 
+/**
+ * @brief Checks if the user wants to add another student.
+ */
 void checkIfDone() {
   cout << "Add Another Student? (y/n): " << endl;
   char c = ' ';

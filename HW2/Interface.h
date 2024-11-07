@@ -1,7 +1,7 @@
 /**
  * @file Interface.h
  * @author Trevor Ruttan
- * @Date 11/6/2024
+ * @Date 11/7/2024
  * @version 1.0
  * @section DESCRIPTION
  */
@@ -17,4 +17,7 @@
 
 #pragma once
 
+/**
+ * @brief Main interface function that handles the different steps and loops.
+ */
 void interface();
