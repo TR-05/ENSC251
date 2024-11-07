@@ -1,7 +1,7 @@
 /**
- * @file Grading.h
+ * @file Interface.h
  * @author Trevor Ruttan
- * @Date 11/4/2024
+ * @Date 11/6/2024
  * @version 1.0
  * @section DESCRIPTION
  */
@@ -15,24 +15,6 @@
 // ____ 301580889 ______
 //
 
-#include "Student.h"
-#include <iostream>
-#include <stdexcept>
-#include <string>
-#include <unordered_map>
-#include <vector>
-using namespace std;
+#pragma once
 
-class Grading {
-private:
-  unordered_map<string, Student> students;
-  int numAssignments;
-  int maxGrade;
-public:
-  Grading();
-
-  void addStudent(string name, vector<int> grades);
-
-void printStudents();
-}
-;
+void interface();

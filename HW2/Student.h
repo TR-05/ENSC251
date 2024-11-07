@@ -16,6 +16,8 @@
 //
 
 #include <string>
+#include <vector>
+
 using namespace std;
 
 class Student {
@@ -28,6 +30,8 @@ public:
   Student(string name, vector<int> grades) : name(name), grades(grades) {}
 
   string getName() const { return name; }
+  void setName(string name) { this->name = name; }
+  void setGrades(vector<int> grades) { this->grades = grades; }
 
   vector<int> getGrades() const { return grades; }
 };

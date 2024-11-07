@@ -15,12 +15,7 @@
 // ____ 301580889 ______
 //
 
-#include "Grading.h"
-#include <iostream>
-#include <string>
-#include <vector>
-
-using namespace std;
+#include "Interface.h"
 
 /*
 • An exception should be raised if the number of assignments is less than 0.
@@ -35,12 +30,11 @@ score for a given assignment.
 
 int main() {
   // type -1 when prompted for # of assignments to trigger exception 1
-  // type -1 when prompted for assignment score to trigger exception 2
   // exception 3 is not triggerable through user input as exception 5 will be triggered first
   // input any student then input a second with the same name to trigger exception 4
   // type 101 when prompted for assignment score to trigger exception 5
 
-  Grading system;
+  interface();
 
   return 0;
 }
