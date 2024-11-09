@@ -1,7 +1,7 @@
 /**
  * @file HW2.cpp
  * @author Trevor Ruttan
- * @Date 11/4/2024
+ * @Date 11/8/2024
  * @version 1.0
  * @section DESCRIPTION
  */
@@ -10,7 +10,7 @@
 // the Academic Honesty and Integrity related policies as outlined in the
 // syllabus.
 //
-// _____ Trevor Ruttan ____ _____11/4/2024______________
+// _____ Trevor Ruttan ____ _____11/8/2024______________
 //
 // ____ 301580889 ______
 //
@@ -32,7 +32,7 @@ int main() {
   // type -1 when prompted for assignment score to trigger exception 2
   // type 101 when prompted for assignment score to trigger exception 3
   // enter the same name (first and last) twice to trigger exception 4
-  // exception 5 is impossible as exception 2 and 3 cover this case
+  // exception 5 is impossible to trigger as exception 2 and 3 catch this case first
 
   interface();
 
