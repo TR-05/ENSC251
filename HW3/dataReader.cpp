@@ -1,7 +1,7 @@
 /**
  * @file dataReader.cpp
  * @author Trevor Ruttan
- * @Date 11/27/2024
+ * @Date 11/29/2024
  * @version 1.0
  * @section DESCRIPTION
  */
@@ -15,34 +15,16 @@
 // ____ 301580889 ______
 //
 
+#include <algorithm>
 #include <fstream>
 #include <iostream>
-#include <sstream>
 #include <string>
 #include <unordered_map>
+#include <vector>
+
+#include "movieRatings.h"
 
 using namespace std;
-
-/**
- * @brief Struct to hold finalized movie data
- */
-struct Movie {
-public:
-  string title;
-  float rating;
-  int ratingCount;
-  Movie(string t, float r, int rc) : title(t), rating(r), ratingCount(rc) {}
-};
-
-/**
- * @brief Compare movies by rating for the purpose of sorting
- * @param a Movie a
- * @param b Movie b
- * @return bool
- */
-bool compareMoviesRating(const Movie &a, const Movie &b) {
-  return a.rating > b.rating;
-}
 
 /**
  * @brief Collects data from a file and stores it in a map
@@ -68,8 +50,8 @@ unordered_map<string, vector<int>> collectData(ifstream &file) {
  * @param dataMap unordered_map<string, vector<int>>
  * @return vector<Movie>
  */
-vector<Movie> sortMovies(unordered_map<string, vector<int>> &dataMap) {
-  vector<Movie> movies;
+vector<MovieRating> sortMovies(unordered_map<string, vector<int>> &dataMap) {
+  vector<MovieRating> ratings;
   for (auto movie : dataMap) {
     int sum = 0;
     int count = 0;
@@ -78,28 +60,21 @@ vector<Movie> sortMovies(unordered_map<string, vector<int>> &dataMap) {
       count++;
     }
     float rating = static_cast<float>(sum) / movie.second.size();
-    Movie m(movie.first, rating, count);
-    movies.push_back(m);
+    MovieRating m(movie.first, rating, count);
+    ratings.push_back(m);
   }
-  sort(movies.begin(), movies.end(), compareMoviesRating);
-  return movies;
+  sort(ratings.begin(), ratings.end(), compareMoviesRating);
+  return ratings;
 }
 
 /**
  * @brief Prints movies to the console
  * @param movies vector<Movie>
  */
-void printMovies(vector<Movie> &movies) {
+void printMovies(vector<MovieRating> &movies) {
   cout << "\nSorted by rating:\n";
   for (int i = 0; i < movies.size(); i++) {
-
-    if (movies[i].ratingCount == 1) {
-      cout << movies[i].title << ": " << movies[i].ratingCount
-           << " review, average of " << movies[i].rating << " / 5" << endl;
-    } else {
-      cout << movies[i].title << ": " << movies[i].ratingCount
-           << " reviews, average of " << movies[i].rating << " / 5" << endl;
-    }
+    movies[i].printRating();
   }
   cout << "\n";
 }
@@ -116,8 +91,6 @@ void readData(string filename) {
   }
 
   unordered_map<string, vector<int>> dataMap = collectData(file);
-
-  vector<Movie> movies = sortMovies(dataMap);
-
+  vector<MovieRating> movies = sortMovies(dataMap);
   printMovies(movies);
 }
