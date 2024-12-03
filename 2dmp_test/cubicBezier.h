@@ -80,8 +80,8 @@ class Path
     float x0, y0, x1, y1, x2, y2, x3, y3;
     int numberOfPoints = 0;
     std::vector<float> x, y, theta, t, curvature, lengthAtT, d1x, d1y, d2x, d2y;
-    float length{0};   // The total length of the path
-    float genTime{0};  // The time it took to generate the path
+    float length = 0;   // The total length of the path
+    float genTime = 0;  // The time it took to generate the path
     void printPath();
     void savePath();
     
