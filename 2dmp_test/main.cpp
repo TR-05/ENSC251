@@ -2,26 +2,37 @@
 #include "mp3.h"
 #include <iostream>
 #include <fstream>
+#include <chrono>
 
 using namespace tntnlib;
 
 int main() {
   Path path(0,0, 0,20, 20,0, 20,20, 0.25);
-  path.printPath();
+  //path.printPath();
   path.savePath();
 
-  mp3 mp(path, 0, 0, 0, 62, .5, 120, 120, 10.5, 0);
+  auto start = std::chrono::high_resolution_clock::now();
+  mp3 mp(path, 0, 0, 0, 80, 1.8, 120, 120, 10.5, false);
+  auto end = std::chrono::high_resolution_clock::now();
+  auto duration = std::chrono::duration<double, std::milli>(end - start);
+  std::cout << "Time taken to execute mp3 constructor: " << duration.count() << " ms" << std::endl;
 
-  std::ofstream outFile2("profile_output.txt");
-  for (size_t i = 0; i < mp.wt.size(); i++) {
-    outFile2 << mp.wt[i].t << "," << mp.wt[i].v << "\n";
-    std::cout << mp.wt[i].t << "," << mp.wt[i].v << "\n";
+  std::ofstream v("profile_output.txt");
+
+  for (size_t i = 0; i < mp.wd.size(); i++) {
+    v << mp.wd[i].s << "," << mp.wd[i].v;
+    v << "," << mp.wd[i].vl;
+    v << "," << mp.wd[i].vr << "\n";
+
+    std::cout << mp.wd[i].s << "," << mp.wd[i].vl << ", " << mp.wd[i].vr << "\n";
+
+
   }
-  outFile2.close();
+  v.close();
 
-  /*for (size_t i = 0; i < mp.wt.size(); i++) {
+  /*for (size_t i = 0; i < mp.wd.size(); i++) {
     printf("P: (%.2f, %.2f, %.2f), Curvature: %.2f, s: %.2f, ds: %.2f, vl: %.2f, vr: %.2f, v: %.2f, w: %.2f, t: %.2f\n",
-           mp.wt[i].pose.x, mp.wt[i].pose.y, mp.wt[i].pose.theta, mp.wt[i].curvature, mp.wt[i].s, mp.wt[i].ds, mp.wt[i].vl, mp.wt[i].vr, mp.wt[i].v, mp.wt[i].w, mp.wt[i].t);
+           mp.wd[i].pose.x, mp.wd[i].pose.y, mp.wd[i].pose.theta, mp.wd[i].curvature, mp.wd[i].s, mp.wd[i].ds, mp.wd[i].vl, mp.wd[i].vr, mp.wd[i].v, mp.wd[i].w, mp.wd[i].t);
     
     }*/
   return 0;

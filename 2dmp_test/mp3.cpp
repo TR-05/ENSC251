@@ -26,11 +26,11 @@ mp3::mp3(Path &path, float vi, float wi, float vf, float vMax, float wMax,
   initializeWaypoints();
   forwardPass();
   backwardPass();
-   calculateTimeIntervals();
-   lerpToTimeDomain(10);
+  calculateTimeIntervals();
+  lerpToTimeDomain(10);
 
   if (backwards) {
-     adjustForBackwardMotion();
+    adjustForBackwardMotion();
   }
 }
 
@@ -70,10 +70,10 @@ void mp3::forwardPass() {
     float d = i * path.pointSpacing;
     wd[i].v = vMax;
     wd[i].w = wd[i].v * path.curvature[i];
-    // if (fabs(wd[i].w) > wMax) {
-    //   wd[i].w = wMax * sgn(wd[i].w);
-    //   wd[i].v = wd[i].w / path.curvature[i];
-    // }
+    if (fabs(wd[i].w) > wMax) {
+      wd[i].w = wMax * sgn(wd[i].w);
+      wd[i].v = wd[i].w / path.curvature[i];
+    }
     acelPass2(wd[i].vl, wd[i].vr, wd[i].v, wd[i].w, wd[i - 1].vl, wd[i - 1].vr,
               path.curvature[i], vMax, wMax, acel, path.pointSpacing,
               trackWidth);
@@ -96,12 +96,12 @@ void mp3::backwardPass() {
 
 void mp3::calculateTimeIntervals() {
   for (size_t i = 1; i < wd.size(); i++) {
-    wd[i].ds = path.pointSpacing / ((wd[i].v + wd[i - 1].v) / 2);
-    wd[i].s = wd[i - 1].s + wd[i].ds;
+    wd[i].dt = path.pointSpacing / ((wd[i].v + wd[i - 1].v) / 2);
+    wd[i].t = wd[i - 1].t + wd[i].dt;
   }
-  wd.back().ds = 0;
-  wd.back().s = wd[wd.size() - 1].s;
-  totalTime = wd.back().s;
+  wd.back().dt = 0;
+  wd.back().t = wd[wd.size() - 1].t;
+  totalTime = wd.back().t;
 }
 
 void mp3::lerpToTimeDomain(float newDtms) {
@@ -111,10 +111,10 @@ void mp3::lerpToTimeDomain(float newDtms) {
   int index = 1;
   for (size_t i = 0; i < wt.size(); i++) {
     float T = i * newDt;
-    while (wd[index].s < T) {
+    while (wd[index].t < T) {
       index++;
     }
-    float ratio = (T - wd[index - 1].s) / (wd[index].s - wd[index - 1].s);
+    float ratio = (T - wd[index - 1].t) / (wd[index].t - wd[index - 1].t);
     interpolateWaypoints(i, index, ratio, T);
   }
   wt.back().v = vf;
@@ -128,16 +128,19 @@ void mp3::lerpToTimeDomain(float newDtms) {
 void mp3::interpolateWaypoints(int i, int index, float ratio, float T) {
   wt[i].v = wd[index - 1].v + ratio * (wd[index].v - wd[index - 1].v);
   wt[i].vl = wd[index - 1].vl + ratio * (wd[index].vl - wd[index - 1].vl);
-  wt[i].vr = wd[index - 1].vl + ratio * (wd[index].vr - wd[index - 1].vr);
+  wt[i].vr = wd[index - 1].vr + ratio * (wd[index].vr - wd[index - 1].vr);
   wt[i].curvature = path.curvature[index - 1] +
                     ratio * (path.curvature[index] - path.curvature[index - 1]);
   wt[i].t = T;
+  wt[i].dt = T - wt[i - 1].t;
   wt[i].pose.x =
       path.x[index - 1] + ratio * (path.x[index] - path.x[index - 1]);
   wt[i].pose.y =
       path.y[index - 1] + ratio * (path.y[index] - path.y[index - 1]);
   wt[i].pose.theta = path.theta[index - 1] +
                      ratio * (path.theta[index] - path.theta[index - 1]);
+  wt[i].ds = wd[index - 1].ds + ratio * (wd[index].ds - wd[index - 1].ds);
+  wt[i].s = wd[index - 1].s + ratio * (wd[index].s - wd[index - 1].s);
 }
 
 void mp3::adjustForBackwardMotion() {

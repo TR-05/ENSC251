@@ -2,7 +2,7 @@
 CPPFLAGS := -std=c++2a #-pedantic-errors -Wall -Wextra -Werror
 
 # Name the executable
-TARGET = lab7
+TARGET = 2dmp
 
 # Find all .cpp files and corresponding .o files
 SRCS := $(wildcard *.cpp)
