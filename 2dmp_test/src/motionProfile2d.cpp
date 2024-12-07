@@ -1,4 +1,4 @@
-#include "motionProfile2d.h"
+#include "../include/motionProfile2d.h"
 
 #include <vector>
 

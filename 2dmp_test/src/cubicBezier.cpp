@@ -1,4 +1,4 @@
-#include "cubicBezier.h"
+#include "../include/cubicBezier.h"
 
 #include <iostream>
 #include <fstream>

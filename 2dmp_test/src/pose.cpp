@@ -1,5 +1,5 @@
 #include <math.h>
-#include "pose.h"
+#include "../include/pose.h"
 using namespace tntnlib;
 
 /**
