@@ -5,9 +5,9 @@ class MotionProfile1d {
 private:
 public:
     MotionProfile1d();
-    MotionProfile1d(double distance, double maxVelocity, double acel, double decel);
+    MotionProfile1d(float distance, float maxVelocity, float acel, float decel);
     ~MotionProfile1d() {}
 
-    std::vector<double> v,t;
-    double totalTime;
+    std::vector<float> v,t;
+    float totalTime;
 };

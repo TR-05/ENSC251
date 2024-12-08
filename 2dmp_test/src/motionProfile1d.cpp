@@ -4,15 +4,15 @@
 
 MotionProfile1d::MotionProfile1d() {}
 
-MotionProfile1d::MotionProfile1d(double distance, double maxVelocity,
-                                 double acel, double decel) {
+MotionProfile1d::MotionProfile1d(float distance, float maxVelocity,
+                                 float acel, float decel) {
   const bool backwards = distance < 0;
   distance = fabs(distance);
-  double acelTime = maxVelocity / acel;
-  double acelDist = 0.5 * acel * acelTime * acelTime;
-  double decelTime = maxVelocity / decel;
-  double decelDist = 0.5 * decel * decelTime * decelTime;
-  double cruiseDist, cruiseTime;
+  float acelTime = maxVelocity / acel;
+  float acelDist = 0.5 * acel * acelTime * acelTime;
+  float decelTime = maxVelocity / decel;
+  float decelDist = 0.5 * decel * decelTime * decelTime;
+  float cruiseDist, cruiseTime;
 
   if (acelDist + decelDist > distance) {
     // Asymmetrical triangular profile
@@ -30,10 +30,10 @@ MotionProfile1d::MotionProfile1d(double distance, double maxVelocity,
   }
 
   totalTime = acelTime + decelTime + cruiseTime;
-  double currentTime = 0;
-  double currentDistance = 0;
-  double currentVelocity = 0;
-  const double dt = 0.01;
+  float currentTime = 0;
+  float currentDistance = 0;
+  float currentVelocity = 0;
+  const float dt = 0.01;
 
   while (currentTime < totalTime) {
     if (currentTime < acelTime) {
