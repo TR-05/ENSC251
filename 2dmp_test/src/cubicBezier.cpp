@@ -1,7 +1,7 @@
 #include "../include/cubicBezier.h"
 
-#include <iostream>
 #include <fstream>
+#include <iostream>
 #include <vector>
 
 using namespace tntnlib;
@@ -82,6 +82,8 @@ void Path::generatePath() {
     t = this->t[i];
     if (t > 1)
       t = 1;
+
+    this->lengthAtT[i] = this->length;
     this->x[i] = xAt(t);
     this->y[i] = yAt(t);
     this->d1x[i] = d1xAt(t);
@@ -89,11 +91,21 @@ void Path::generatePath() {
     this->d2x[i] = d2xAt(t);
     this->d2y[i] = d2yAt(t);
     this->theta[i] = 90 - atan2(this->d1y[i], this->d1x[i]) * radToDeg;
-    this->length += pointSpacing;
-    this->lengthAtT[i] = this->length;
+
     double denominator = d1x[i] * d1x[i] + d1y[i] * d1y[i];
     this->curvature[i] = -1 * (d1x[i] * d2y[i] - d1y[i] * d2x[i]) /
                          sqrt(denominator * denominator * denominator);
+
+    if (i == 0) {
+      this->length = 0;
+    } else if (i < x.size() - 1) {
+      this->length += pointSpacing;
+    } else {
+      this->length +=
+          sqrt((x[i] - x[i - 1]) *
+               (x[i] - x[i - 1] + (y[i] - y[i - 1]) * (y[i] - y[i - 1])));
+    }
+    //  printf("i: %lu, s: %.2f\n", i, this->lengthAtT[i]);
   }
   this->genTime = 0;
 }
@@ -124,8 +136,13 @@ void Path::printPath() {
 }
 
 void Path::savePath() {
-    
+
   std::ofstream outFile("path_output.txt");
+  outFile << this->x0 << "," << this->y0 << "\n";
+  outFile << this->x1 << "," << this->y1 << "\n";
+  outFile << this->x2 << "," << this->y2 << "\n";
+  outFile << this->x3 << "," << this->y3 << "\n";
+
   for (size_t i = 0; i < x.size(); i++) {
     outFile << this->x[i] << "," << this->y[i] << "\n";
   }

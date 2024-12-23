@@ -27,6 +27,6 @@ clean:
 
 # make and run the program in one command
 run:
-	make clean
+#	make clean
 	make $(OUTDIR)/$(TARGET)
 	./$(OUTDIR)/$(TARGET)

@@ -43,6 +43,6 @@ ax2.scatter(path_x_values, path_y_values)
 ax2.set_xlabel('x')
 ax2.set_ylabel('y')
 ax2.set_title('Path Output Points')
-
+plt.axis('square');
 plt.tight_layout()
 plt.show()
