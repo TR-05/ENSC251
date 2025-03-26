@@ -1,5 +1,5 @@
 #set to c++ 20 and add error flags
-CPPFLAGS := -std=c++17
+CPPFLAGS := -std=c++23
 
 # Name the executable
 TARGET = 2dmp
